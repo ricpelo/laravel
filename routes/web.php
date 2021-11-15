@@ -18,7 +18,9 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba', function () {
-    return view('prueba', [
-        'titulo' => 'El diablo sobre ruedas',
-    ]);
+    return view('prueba');
+});
+
+Route::get('/depart', function () {
+    return view('depart.index');
 });
