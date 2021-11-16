@@ -10,4 +10,9 @@ class Depart extends Controller
     {
         return 'Hola';
     }
+
+    public function store()
+    {
+        // Grabar la información
+    }
 }

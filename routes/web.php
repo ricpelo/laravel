@@ -27,3 +27,17 @@ Route::get('/depart', function () {
 });
 
 Route::get('/depart/create', [Depart::class, 'create']);
+
+Route::post('/depart', [Depart::class, 'store']);
+
+/*
+
+GET /depart   => index (select global)
+GET /depart/create => create (formulario en blanco para INSERT)
+POST /depart  => store (graba la información)
+GET /depart/{id} => show (select de una fila)
+GET /depart/{id}/edit => edit (formalario para modificar una fila)
+PUT/PATCH /depart/{id} => update (update de una fila)
+DELETE /depart/{id} => destroy (delete de la fila)
+
+*/
