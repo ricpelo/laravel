@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Depart;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,10 @@ Route::get('/prueba', function () {
 });
 
 Route::get('/depart', function () {
-    return view('depart.index');
+    $departs = DB::select('select * from depart');
+    return view('depart.index', [
+        'departamentos' => $departs,
+    ]);
 });
 
 Route::get('/depart/create', [Depart::class, 'create']);
