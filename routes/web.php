@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Depart;
-use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\DepartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,11 +22,11 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
-Route::get('/depart', [Depart::class, 'index']);
+Route::get('/depart', [DepartController::class, 'index']);
 
-Route::get('/depart/create', [Depart::class, 'create']);
+Route::get('/depart/create', [DepartController::class, 'create']);
 
-Route::post('/depart', [Depart::class, 'store']);
+Route::post('/depart', [DepartController::class, 'store']);
 
 /*
 
