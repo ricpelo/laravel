@@ -17,4 +17,22 @@ class EmpleController extends Controller
             'empleados' => $empleados,
         ]);
     }
+
+    public function show($id)
+    {
+        $empleado = DB::select('SELECT e.*, d.denominacion
+                                  FROM emple e
+                                  JOIN depart d
+                                    ON depart_id = d.id
+                                 WHERE e.id = ?', [$id]);
+
+        if (empty($empleado)) {
+            return redirect('/emple')
+                ->with('error', 'El empleado no existe');
+        }
+
+        return view('emple.show', [
+            'empleado' => $empleado,
+        ]);
+    }
 }

@@ -28,6 +28,7 @@ Route::get('/depart/create', [DepartController::class, 'create']);
 Route::post('/depart', [DepartController::class, 'store']);
 
 Route::get('/emple', [EmpleController::class, 'index']);
+Route::get('emple/{id}', [EmpleController::class, 'show']);
 
 /*
 

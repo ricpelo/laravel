@@ -18,6 +18,12 @@
                 </svg>
             </header>
 
+            @if (session()->has('error'))
+            <div class="bg-red-100 rounded-lg p-4 mt-4 mb-4 text-sm text-red-700" role="alert">
+                <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
+              </div>
+            @endif
+
             <div class="mt-3 mb-3">
                 {{ $slot }}
             </div>
