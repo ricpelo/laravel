@@ -23,12 +23,7 @@ Route::get('/prueba', function () {
     return view('prueba');
 });
 
-Route::get('/depart', function () {
-    $departs = DB::select('select * from depart');
-    return view('depart.index', [
-        'departamentos' => $departs,
-    ]);
-});
+Route::get('/depart', [Depart::class, 'index']);
 
 Route::get('/depart/create', [Depart::class, 'create']);
 
