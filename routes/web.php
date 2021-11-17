@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DepartController;
+use App\Http\Controllers\EmpleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,10 +24,10 @@ Route::get('/prueba', function () {
 });
 
 Route::get('/depart', [DepartController::class, 'index']);
-
 Route::get('/depart/create', [DepartController::class, 'create']);
-
 Route::post('/depart', [DepartController::class, 'store']);
+
+Route::get('/emple', [EmpleController::class, 'index']);
 
 /*
 
