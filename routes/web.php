@@ -28,7 +28,8 @@ Route::get('/depart/create', [DepartController::class, 'create']);
 Route::post('/depart', [DepartController::class, 'store']);
 
 Route::get('/emple', [EmpleController::class, 'index']);
-Route::get('/emple/{id}', [EmpleController::class, 'show']);
+Route::get('/emple/create', [EmpleController::class, 'create']);
+Route::get('/emple/{id}', [EmpleController::class, 'show'])->where('id', '[0-9]+');
 Route::delete('/emple/{id}', [EmpleController::class, 'destroy']);
 
 /*

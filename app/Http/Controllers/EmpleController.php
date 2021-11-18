@@ -20,7 +20,7 @@ class EmpleController extends Controller
 
     public function show($id)
     {
-        $empleados = $this->findEmpleado($id);
+        $empleado = $this->findEmpleado($id);
 
         // if (empty($empleado)) {
         //     return redirect('/emple')
@@ -28,7 +28,7 @@ class EmpleController extends Controller
         // }
 
         return view('emple.show', [
-            'empleado' => $empleados[0],
+            'empleado' => $empleado,
         ]);
     }
 
@@ -40,6 +40,11 @@ class EmpleController extends Controller
 
         return redirect()->back()
             ->with('success', 'Empleado borrado correctamente');
+    }
+
+    public function create()
+    {
+        return view('emple.create');
     }
 
     private function findEmpleado($id)
