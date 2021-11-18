@@ -20,7 +20,13 @@
 
             @if (session()->has('error'))
                 <div class="bg-red-100 rounded-lg p-4 mt-4 mb-4 text-sm text-red-700" role="alert">
-                    <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
+                    <span class="font-semibold">Error:</span> {{ session('error') }}
+                </div>
+            @endif
+
+            @if (session()->has('success'))
+                <div class="bg-green-100 rounded-lg p-4 mt-4 mb-4 text-sm text-green-700" role="alert">
+                    {{ session('success') }}
                 </div>
             @endif
 
@@ -28,7 +34,7 @@
                 {{ $slot }}
             </div>
 
-            <footer class="flex justify-center mt-4 sm:items-center sm:justify-between">
+            <footer class="flex justify-center mt-4 sm:items-center sm:justify-between bg-gray-100 rounded p-2">
                 <div class="text-center text-sm text-gray-500 sm:text-left">
                     <div class="flex items-center">
                         <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">

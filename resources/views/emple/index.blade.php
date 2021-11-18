@@ -30,7 +30,9 @@
                         <tr class="whitespace-nowrap">
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">
-                                    {{ $emple->nombre }}
+                                    <a href="/emple/{{ $emple->id }}" class="text-blue-800 hover:underline">
+                                        {{ $emple->nombre }}
+                                    </a>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
@@ -53,8 +55,11 @@
                                     class="px-4 py-1 text-sm text-white bg-blue-400 rounded">Editar</a>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#"
-                                    class="px-4 py-1 text-sm text-white bg-red-400 rounded">Borrar</a>
+                                <form action="/emple/{{ $emple->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="return confirm('¿Seguro?')" class="px-4 py-1 text-sm text-white bg-red-400 rounded" type="submit">Borrar</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
