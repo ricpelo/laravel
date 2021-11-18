@@ -9,7 +9,7 @@
         <title>Laravel</title>
     </head>
     <body class="antialiased">
-        <div class="container mx-auto">
+        <div class="container px-4 mx-auto">
             <header class="bg-gray-100 rounded py-4 px-4 mt-5">
                 <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
                     <g clip-path="url(#clip0)" fill="#EF3B2D">
@@ -19,9 +19,9 @@
             </header>
 
             @if (session()->has('error'))
-            <div class="bg-red-100 rounded-lg p-4 mt-4 mb-4 text-sm text-red-700" role="alert">
-                <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
-              </div>
+                <div class="bg-red-100 rounded-lg p-4 mt-4 mb-4 text-sm text-red-700" role="alert">
+                    <span class="font-medium">Danger alert!</span> Change a few things up and try submitting again.
+                </div>
             @endif
 
             <div class="mt-3 mb-3">
