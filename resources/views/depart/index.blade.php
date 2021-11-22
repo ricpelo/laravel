@@ -45,5 +45,6 @@
                 </tbody>
             </table>
         </div>
+        <a href="/depart/create" class="mt-4 text-blue-900 hover:underline">Insertar un nuevo departamento</a>
     </div>
 </x-layout>

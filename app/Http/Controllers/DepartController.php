@@ -17,11 +17,24 @@ class DepartController extends Controller
 
     public function create()
     {
-        return 'Hola';
+        return view('depart.create');
     }
 
     public function store()
     {
-        // Grabar la información
+        $validados = request()->validate([
+            'denominacion' => 'required|max:255',
+            'localidad' => 'required|max:255',
+        ]);
+
+        DB::insert('INSERT
+                      INTO depart (denominacion, localidad)
+                    VALUES (?, ?)', [
+            $validados['denominacion'],
+            $validados['localidad'],
+        ]);
+
+        return redirect('/depart')
+            ->with('success', 'Departamento insertado con éxito.');
     }
 }
