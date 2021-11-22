@@ -37,4 +37,24 @@ class DepartController extends Controller
         return redirect('/depart')
             ->with('success', 'Departamento insertado con éxito.');
     }
+
+    public function edit($id)
+    {
+        $departamento = $this->findDepartamento($id);
+
+        return view('depart.edit', [
+            'departamento' => $departamento,
+        ]);
+    }
+
+    private function findDepartamento($id)
+    {
+        $departamentos = DB::select('SELECT *
+                                   FROM depart
+                                  WHERE id = ?', [$id]);
+
+        abort_unless($departamentos, 404);
+
+        return $departamentos[0];
+    }
 }
