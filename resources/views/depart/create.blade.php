@@ -1,5 +1,7 @@
 <x-layout>
-    <x-depart.form
-        :action="'/depart'"
-        :method="'POST'" />
+    <form action="/depart" method="POST">
+        <x-depart.form
+            :denominacion="''"
+            :localidad="''"/>
+    </form>
 </x-layout>
