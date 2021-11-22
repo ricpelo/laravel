@@ -25,9 +25,11 @@ Route::get('/prueba', function () {
 
 Route::get('/depart', [DepartController::class, 'index']);
 Route::get('/depart/create', [DepartController::class, 'create']);
-Route::post('/depart', [DepartController::class, 'store']);
+Route::post('/depart', [DepartController::class, 'store'])
+    ->name('depart.store');
 Route::get('/depart/{id}/edit', [DepartController::class, 'edit']);
-Route::put('/depart/{id}', [DepartController::class, 'update']);
+Route::put('/depart/{id}', [DepartController::class, 'update'])
+    ->name('depart.update');
 
 Route::get('/emple', [EmpleController::class, 'index']);
 Route::get('/emple/create', [EmpleController::class, 'create']);

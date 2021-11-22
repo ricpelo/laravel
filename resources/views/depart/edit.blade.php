@@ -1,5 +1,5 @@
 <x-layout>
-    <form action="/depart/{{ $departamento->id }}" method="POST">
+    <form action="{{ route('depart.update', $departamento->id, false) }}" method="POST">
         @method('PUT')
         <x-depart.form
             :denominacion="$departamento->denominacion"
