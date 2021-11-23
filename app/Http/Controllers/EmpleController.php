@@ -9,10 +9,16 @@ class EmpleController extends Controller
 {
     public function index()
     {
-        $empleados = DB::select('SELECT e.*, d.denominacion
-                                   FROM emple e
-                                   JOIN depart d
-                                     ON depart_id = d.id');
+        // $empleados = DB::select('SELECT e.*, d.denominacion
+        //                            FROM emple e
+        //                            JOIN depart d
+        //                              ON depart_id = d.id');
+
+        $empleados = DB::table('emple', 'e')
+            ->leftJoin('depart AS d', 'depart_id', '=', 'd.id')
+            ->select('e.*', 'denominacion')
+            ->get();
+
         return view('emple.index', [
             'empleados' => $empleados,
         ]);
