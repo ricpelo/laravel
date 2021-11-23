@@ -22,10 +22,7 @@ class DepartController extends Controller
 
     public function store()
     {
-        $validados = request()->validate([
-            'denominacion' => 'required|max:255',
-            'localidad' => 'required|max:255',
-        ]);
+        $validados = $this->validar();
 
         DB::insert('INSERT
                       INTO depart (denominacion, localidad)
@@ -45,6 +42,35 @@ class DepartController extends Controller
         return view('depart.edit', [
             'departamento' => $departamento,
         ]);
+    }
+
+    public function update($id)
+    {
+        $validados = $this->validar();
+
+        $this->findDepartamento($id);
+
+        DB::update('UPDATE depart
+                       SET denominacion = ?
+                         , localidad = ?
+                     WHERE id = ?', [
+            $validados['denominacion'],
+            $validados['localidad'],
+            $id,
+        ]);
+
+        return redirect('/depart')
+            ->with('success', 'Departamento modificado con éxito.');
+    }
+
+    private function validar()
+    {
+        $validados = request()->validate([
+            'denominacion' => 'required|max:255',
+            'localidad' => 'required|max:255',
+        ]);
+
+        return $validados;
     }
 
     private function findDepartamento($id)
