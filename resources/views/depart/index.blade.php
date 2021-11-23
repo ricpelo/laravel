@@ -6,10 +6,14 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            Denominación
+                            <a href="/depart?orden=denominacion">
+                                Denominación
+                            </a>
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            Localidad
+                            <a href="/depart?orden=localidad">
+                                Localidad
+                            </a>
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
                             Editar

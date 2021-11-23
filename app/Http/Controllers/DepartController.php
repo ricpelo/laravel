@@ -9,7 +9,14 @@ class DepartController extends Controller
 {
     public function index()
     {
-        $departs = DB::select('select * from depart');
+        $ordenes = ['denominacion', 'localidad'];
+        $orden = request()->query('orden', 'denominacion');
+        abort_unless(in_array($orden, $ordenes), 404);
+
+        $departs = DB::table('depart')
+            ->orderBy($orden)
+            ->get();
+
         return view('depart.index', [
             'departamentos' => $departs,
         ]);
@@ -24,11 +31,9 @@ class DepartController extends Controller
     {
         $validados = $this->validar();
 
-        DB::insert('INSERT
-                      INTO depart (denominacion, localidad)
-                    VALUES (?, ?)', [
-            $validados['denominacion'],
-            $validados['localidad'],
+        DB::table('depart')->insert([
+            'denominacion' => $validados['denominacion'],
+            'localidad' => $validados['localidad'],
         ]);
 
         return redirect('/depart')
@@ -47,16 +52,13 @@ class DepartController extends Controller
     public function update($id)
     {
         $validados = $this->validar();
-
         $this->findDepartamento($id);
 
-        DB::update('UPDATE depart
-                       SET denominacion = ?
-                         , localidad = ?
-                     WHERE id = ?', [
-            $validados['denominacion'],
-            $validados['localidad'],
-            $id,
+        DB::table('depart')
+            ->where('id', $id)
+            ->update([
+            'denominacion' => $validados['denominacion'],
+            'localidad' => $validados['localidad'],
         ]);
 
         return redirect('/depart')
@@ -75,12 +77,12 @@ class DepartController extends Controller
 
     private function findDepartamento($id)
     {
-        $departamentos = DB::select('SELECT *
-                                   FROM depart
-                                  WHERE id = ?', [$id]);
+        $departamentos = DB::table('depart')
+            ->where('id', $id)
+            ->get();
 
-        abort_unless($departamentos, 404);
+        abort_if($departamentos->isEmpty(), 404);
 
-        return $departamentos[0];
+        return $departamentos->first();
     }
 }
