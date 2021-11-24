@@ -26,8 +26,15 @@ class DepartController extends Controller
 
         request()->flash();
 
+        $paginador = $departs->paginate(2);
+        $paginador->appends(compact(
+            'denominacion',
+            'localidad',
+            'orden'
+        ));
+
         return view('depart.index', [
-            'departamentos' => $departs->get(),
+            'departamentos' => $paginador,
         ]);
     }
 
