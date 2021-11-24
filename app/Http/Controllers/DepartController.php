@@ -9,12 +9,18 @@ class DepartController extends Controller
 {
     public function index()
     {
-        $ordenes = ['denominacion', 'localidad'];
+        $ordenes = ['denominacion', 'localidad', '-denominacion', '-localidad'];
         $orden = request()->query('orden', 'denominacion');
         abort_unless(in_array($orden, $ordenes), 404);
 
+        $direccion = 'asc';
+        if($orden[0] == '-'){
+            $orden = substr($orden,1);
+            $direccion = 'desc';
+        }
+
         $departs = DB::table('depart')
-            ->orderBy($orden)
+            ->orderBy($orden, $direccion)
             ->get();
 
         return view('depart.index', [
