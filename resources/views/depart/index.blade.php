@@ -1,4 +1,5 @@
 <x-layout>
+    <x-depart.search/>
     <div class="flex flex-col items-center mt-4">
         <h1 class="mb-4 text-2xl font-semibold">Departamentos</h1>
         <div class="border border-gray-200 shadow">

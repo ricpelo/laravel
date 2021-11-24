@@ -14,11 +14,20 @@ class DepartController extends Controller
         abort_unless(in_array($orden, $ordenes), 404);
 
         $departs = DB::table('depart')
-            ->orderBy($orden)
-            ->get();
+            ->orderBy($orden);
+
+        if (($denominacion = request()->query('denominacion')) !== null) {
+            $departs->where('denominacion', 'ilike', "%$denominacion%");
+        }
+
+        if (($localidad = request()->query('localidad')) !== null) {
+            $departs->where('localidad', 'ilike', "%$localidad%");
+        }
+
+        request()->flash();
 
         return view('depart.index', [
-            'departamentos' => $departs,
+            'departamentos' => $departs->get(),
         ]);
     }
 
