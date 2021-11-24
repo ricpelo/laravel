@@ -6,13 +6,33 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            <a href="/depart?orden=denominacion">
-                                Denominación
+                            <a href={{"-denominacion" == request()->query('orden','denominacion')
+                             ? '/depart?orden=denominacion'
+                             : '/depart?orden=-denominacion'
+                             }}>
+                                Denominación <span class="text-blue-500 text-xs">
+                                    @if ('-denominacion' == request()->query('orden'))
+                                        {{'down'}}
+                                    @elseif ('denominacion' == request()->query('orden'))
+                                        {{'up'}}
+                                    @endif
+                                </span>
+
                             </a>
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            <a href="/depart?orden=localidad">
+                            <a href={{"-localidad" == request()->query('orden','localidad')
+                                ? '/depart?orden=localidad'
+                                : '/depart?orden=-localidad'
+                                }}>
                                 Localidad
+                                <span class="text-blue-500 text-xs">
+                                    @if ('-localidad' == request()->query('orden'))
+                                        {{'down'}}
+                                    @elseif ('localidad' == request()->query('orden'))
+                                        {{'up'}}
+                                    @endif
+                                </span>
                             </a>
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
