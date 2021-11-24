@@ -6,13 +6,16 @@
             <table>
                 <thead class="bg-gray-50">
                     <tr>
+                        @php
+                            $link = e("denominacion=" . old('denominacion') . "&localidad=" . old('localidad'));
+                        @endphp
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            <a href="/depart?orden=denominacion">
+                            <a href="/depart?orden=denominacion&{!! $link !!}">
                                 Denominación
                             </a>
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            <a href="/depart?orden=localidad">
+                            <a href="/depart?orden=localidad&{!! $link !!}">
                                 Localidad
                             </a>
                         </th>

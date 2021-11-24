@@ -10,7 +10,7 @@ class DepartController extends Controller
     public function index()
     {
         $ordenes = ['denominacion', 'localidad'];
-        $orden = request()->query('orden', 'denominacion');
+        $orden = request()->query('orden') ?: 'denominacion';
         abort_unless(in_array($orden, $ordenes), 404);
 
         $departs = DB::table('depart')

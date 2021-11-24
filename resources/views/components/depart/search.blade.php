@@ -1,5 +1,6 @@
 <div class="w-80">
     <form action="/depart" method="GET">
+        <input type="hidden" name="orden" value="{{ old('orden') }}">
         <div class="mb-3">
             <label for="denominacion"
                 class="text-sm font-medium text-gray-900 block mb-2">
