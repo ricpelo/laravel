@@ -23,9 +23,11 @@
                         $emple = !empty($segmentos) && $segmentos[0] == 'emple';
                         $depart = !empty($segmentos) && $segmentos[0] == 'depart';
                     @endphp
-                    <a class="hover:text-blue-500 hover:underline @if($home) font-semibold @endif" href="/">Inicio</a> |
-                    <a class="hover:text-blue-500 hover:underline @if($emple) font-semibold @endif" href="/emple">Empleados</a> |
-                    <a class="hover:text-blue-500 hover:underline @if($depart) font-semibold @endif" href="/depart">Departamentos</a>
+                    <nav>
+                        <a class="hover:text-blue-500 hover:underline @if($home) font-semibold @endif" href="/">Inicio</a> |
+                        <a class="hover:text-blue-500 hover:underline @if($emple) font-semibold @endif" href="/emple">Empleados</a> |
+                        <a class="hover:text-blue-500 hover:underline @if($depart) font-semibold @endif" href="/depart">Departamentos</a>
+                    </nav>
                 </div>
             </header>
 
