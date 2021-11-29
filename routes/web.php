@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartController;
 use App\Http\Controllers\EmpleController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,10 @@ Route::get('/emple', [EmpleController::class, 'index']);
 Route::get('/emple/create', [EmpleController::class, 'create']);
 Route::get('/emple/{id}', [EmpleController::class, 'show'])->where('id', '[0-9]+');
 Route::delete('/emple/{id}', [EmpleController::class, 'destroy']);
+
+Route::get('/login', [UsuariosController::class, 'loginForm']);
+Route::post('/login', [UsuariosController::class, 'login']);
+Route::post('/logout', [UsuariosController::class, 'logout']);
 
 /*
 
