@@ -50,7 +50,25 @@ class EmpleController extends Controller
 
     public function create()
     {
-        return view('emple.create');
+        $empleado = (object) [
+            'nombre' => null,
+            'fecha_alt' => null,
+            'salario' => null,
+            'depart_id' => null,
+        ];
+
+        return view('emple.create', [
+            'empleado' => $empleado,
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $empleado = $this->findEmpleado($id);
+
+        return view('emple.edit', [
+            'empleado' => $empleado,
+        ]);
     }
 
     private function findEmpleado($id)
