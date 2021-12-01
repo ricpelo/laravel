@@ -8,7 +8,7 @@
             </label>
             <input type="text" name="denominacion" id="denominacion"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 px-2"
-                value="{{ old('denominacion') }}">
+                value="{{ request()->query('denominacion') }}">
         </div>
         <div class="mb-3">
             <label for="localidad"
@@ -17,7 +17,7 @@
             </label>
             <input type="text" name="localidad" id="localidad"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1 px-2"
-                value="{{ old('localidad') }}">
+                value="{{ request()->query('localidad') }}">
         </div>
         <button type="submit"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 text-center">Buscar</button>

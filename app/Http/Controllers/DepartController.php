@@ -24,8 +24,6 @@ class DepartController extends Controller
             $departs->where('localidad', 'ilike', "%$localidad%");
         }
 
-        request()->flash();
-
         $paginador = $departs->paginate(2);
         $paginador->appends(compact(
             'denominacion',
