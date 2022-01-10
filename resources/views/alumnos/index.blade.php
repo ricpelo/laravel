@@ -9,9 +9,6 @@
                             Nombre
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
-                            Nota
-                        </th>
-                        <th class="px-6 py-2 text-xs text-gray-500">
                             Editar
                         </th>
                         <th class="px-6 py-2 text-xs text-gray-500">
@@ -25,11 +22,6 @@
                             <td class="px-6 py-4">
                                 <div class="text-sm text-gray-900">
                                     {{ $alumno->nombre }}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-900">
-                                    {{ $alumno->nota }}
                                 </div>
                             </td>
                             <td class="px-6 py-4">
@@ -50,5 +42,4 @@
         </div>
         <a href="/alumnos/create" class="mt-4 text-blue-900 hover:underline">Insertar un nuevo alumno</a>
     </div>
-    {{ $alumnos->links() }}
 </x-layout>

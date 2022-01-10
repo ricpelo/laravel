@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,11 +10,7 @@ class AlumnosController extends Controller
 {
     public function index()
     {
-        $alumnos = DB::table('v_alumnos')
-            ->select('id', 'nombre', DB::raw('ROUND(AVG(nota), 1) AS nota'))
-            ->groupBy('id', 'nombre');
-
-        $paginador = $alumnos->paginate(50);
+        $paginador = Alumno::all();
 
         return view('alumnos.index', [
             'alumnos' => $paginador,
@@ -22,9 +19,7 @@ class AlumnosController extends Controller
 
     public function create()
     {
-        $alumno = (object) [
-            'nombre' => null,
-        ];
+        $alumno = new Alumno();
 
         return view('alumnos.create', [
             'alumno' => $alumno,
@@ -35,9 +30,9 @@ class AlumnosController extends Controller
     {
         $validados = $this->validar();
 
-        DB::table('alumnos')->insert([
-            'nombre' => $validados['nombre'],
-        ]);
+        $alumno = new Alumno();
+        $alumno->nombre = $validados['nombre'];
+        $alumno->save();
 
         return redirect('/alumnos')
             ->with('success', 'Alumno insertado con éxito.');
@@ -45,7 +40,7 @@ class AlumnosController extends Controller
 
     public function edit($id)
     {
-        $alumno = $this->findAlumno($id);
+        $alumno = Alumno::findOrFail($id);
 
         return view('alumnos.edit', [
             'alumno' => $alumno,
@@ -55,13 +50,9 @@ class AlumnosController extends Controller
     public function update($id)
     {
         $validados = $this->validar();
-        $this->findAlumno($id);
-
-        DB::table('alumnos')
-            ->where('id', $id)
-            ->update([
-            'nombre' => $validados['nombre'],
-        ]);
+        $alumno = Alumno::findOrFail($id);
+        $alumno->nombre = $validados['nombre'];
+        $alumno->save();
 
         return redirect('/alumnos')
             ->with('success', 'Alumno modificado con éxito.');
@@ -78,7 +69,7 @@ class AlumnosController extends Controller
 
     public function destroy($id)
     {
-        $this->findAlumno($id);
+        $alumno = Alumno::findOrFail($id);
 
         DB::delete('DELETE FROM alumnos WHERE id = ?', [$id]);
 
@@ -88,7 +79,7 @@ class AlumnosController extends Controller
 
     public function criterios($id)
     {
-        $alumno = $this->findAlumno($id);
+        $alumno = Alumno::findOrFail($id);
 
         $notas = DB::table('notas')
             ->select('ce', DB::raw('MAX(nota) AS nota'))
@@ -101,16 +92,5 @@ class AlumnosController extends Controller
             'alumno' => $alumno,
             'notas' => $notas,
         ]);
-    }
-
-    private function findAlumno($id)
-    {
-        $alumnos = DB::table('alumnos')
-            ->where('id', $id)
-            ->get();
-
-        abort_if($alumnos->isEmpty(), 404);
-
-        return $alumnos->first();
     }
 }
