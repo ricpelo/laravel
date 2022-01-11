@@ -70,8 +70,7 @@ class AlumnosController extends Controller
     public function destroy($id)
     {
         $alumno = Alumno::findOrFail($id);
-
-        DB::delete('DELETE FROM alumnos WHERE id = ?', [$id]);
+        $alumno->delete();
 
         return redirect()->back()
             ->with('success', 'Alumno borrado correctamente');
