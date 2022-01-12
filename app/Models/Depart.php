@@ -12,4 +12,9 @@ class Depart extends Model
     protected $table = 'depart';
 
     protected $fillable = ['denominacion', 'localidad'];
+
+    public function empleados()
+    {
+        return $this->hasMany(Emple::class);
+    }
 }

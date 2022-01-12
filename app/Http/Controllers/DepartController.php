@@ -79,13 +79,13 @@ class DepartController extends Controller
     public function destroy($id)
     {
         $depart = Depart::findOrFail($id);
-        $depart->delete();
 
-        // if (Emple::where('depart_id', $depart->id)->doesntExists()) {
-        // } else {
-        //     return redirect('/depart')
-        //         ->with('error', 'El departamento no está vacío');
-        // }
+        if ($depart->empleados->isNotEmpty()) {
+            return redirect('/depart')
+                ->with('error', 'El departamento no está vacío');
+        }
+
+        $depart->delete();
 
         return redirect('/depart')
             ->with('success', 'Departamento borrado con éxito.');
