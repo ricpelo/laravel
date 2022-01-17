@@ -14,14 +14,15 @@ class Factura extends Model
         return $this->belongsTo(Cliente::class);
     }
 
-    // public function lineas()
-    // {
-    //     return $this->hasMany(Linea::class);
-    // }
-
     public function articulos()
     {
         return $this->belongsToMany(Articulo::class, 'lineas')
+            ->as('linea')
             ->withPivot(['id', 'cantidad', 'created_at', 'updated_at']);
+    }
+
+    public function lineas()
+    {
+        return $this->hasMany(Linea::class);
     }
 }
