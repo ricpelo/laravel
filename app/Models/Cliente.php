@@ -13,4 +13,9 @@ class Cliente extends Model
     {
         return $this->hasMany(Factura::class);
     }
+
+    public function lineas()
+    {
+        return $this->hasManyThrough(Linea::class, Factura::class);
+    }
 }
