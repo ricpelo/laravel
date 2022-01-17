@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DepartController;
 use App\Http\Controllers\AlumnosController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpleController;
 use App\Http\Controllers\TemasController;
 use App\Http\Controllers\UsuariosController;
@@ -60,7 +61,7 @@ Route::get('/login', [UsuariosController::class, 'loginForm']);
 Route::post('/login', [UsuariosController::class, 'login']);
 Route::post('/logout', [UsuariosController::class, 'logout']);
 
-Route::resource('temas', TemasController::class);
+Route::resource('clientes', ClienteController::class);
 
 /*
 
