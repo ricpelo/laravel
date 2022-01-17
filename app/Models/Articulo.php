@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Alumno extends Model
+class Articulo extends Model
 {
     use HasFactory;
 
-    public function asignaturas()
+    public function facturas()
     {
-        return $this->belongsToMany(Asignatura::class)
-            ->withPivot('created_at');
+        return $this->belongsToMany(Factura::class, 'lineas');
     }
 }
