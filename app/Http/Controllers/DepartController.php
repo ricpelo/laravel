@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Depart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DepartController extends Controller
 {
@@ -56,19 +55,16 @@ class DepartController extends Controller
             ->with('success', 'Departamento insertado con éxito.');
     }
 
-    public function edit($id)
+    public function edit(Depart $depart)
     {
-        $departamento = Depart::findOrFail($id);
-
         return view('depart.edit', [
-            'departamento' => $departamento,
+            'depart' => $depart,
         ]);
     }
 
-    public function update($id)
+    public function update(Depart $depart)
     {
         $validados = $this->validar();
-        $depart = Depart::findOrFail($id);
         $depart->fill($validados);
         $depart->save();
 
@@ -76,10 +72,8 @@ class DepartController extends Controller
             ->with('success', 'Departamento modificado con éxito.');
     }
 
-    public function destroy($id)
+    public function destroy(Depart $depart)
     {
-        $depart = Depart::findOrFail($id);
-
         if ($depart->empleados->isNotEmpty()) {
             return redirect('/depart')
                 ->with('error', 'El departamento no está vacío');

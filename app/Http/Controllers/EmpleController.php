@@ -13,10 +13,10 @@ class EmpleController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Emple $emple)
     {
         return view('emple.show', [
-            'empleado' => Emple::findOrFail($id),
+            'empleado' => $emple,
         ]);
     }
 

@@ -39,13 +39,15 @@ Route::put('/alumnos/{id}', [AlumnosController::class, 'update'])
 Route::get('/alumnos/criterios/{id}', [AlumnosController::class, 'criterios']);
 
 
-Route::get('/depart', [DepartController::class, 'index']);
-Route::get('/depart/create', [DepartController::class, 'create']);
-Route::post('/depart', [DepartController::class, 'store'])
-    ->name('depart.store');
-Route::get('/depart/{id}/edit', [DepartController::class, 'edit']);
-Route::put('/depart/{id}', [DepartController::class, 'update'])
-    ->name('depart.update');
+// Route::get('/depart', [DepartController::class, 'index']);
+// Route::get('/depart/create', [DepartController::class, 'create']);
+// Route::post('/depart', [DepartController::class, 'store'])
+//     ->name('depart.store');
+// Route::get('/depart/{id}/edit', [DepartController::class, 'edit']);
+// Route::put('/depart/{id}', [DepartController::class, 'update'])
+//     ->name('depart.update');
+
+Route::resource('depart', DepartController::class);
 
 Route::get('/emple', [EmpleController::class, 'index']);
 Route::get('/emple/create', [EmpleController::class, 'create']);
